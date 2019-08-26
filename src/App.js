@@ -1,13 +1,22 @@
-import React from 'react';
-import logo from './onelineaday_logo.png';
-import './App.css';
+//IMPORT REACT
+import React from "react";
+//IMPORT STYLES
+import "./App.css";
+//IMPORT DEPENDENCIES/LIBRARIES
+import { NavLink, BrowserRouter, Route } from "react-router-dom";
+//IMPORT COMPONENTS
+import PrivateRoute from "./components/PrivateRoute";
+import Login from "./components/authentication/Login";
+import Signup from "./components/authentication/Signup";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
+      <BrowserRouter>
+        <NavLink to="/signup">Not a member? Sign up here</NavLink>
+        <Route exact path="/" component={Login} />
+        <Route path="/signup" component={Signup} />
+      </BrowserRouter>
     </div>
   );
 }
