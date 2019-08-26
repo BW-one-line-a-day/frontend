@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavLink to="/signup">Not a member? Sign up here</NavLink>
+        <NavLink to="/signup">Register</NavLink>
         <Route exact path="/" component={Login} />
         <Route path="/signup" component={Signup} />
       </BrowserRouter>
