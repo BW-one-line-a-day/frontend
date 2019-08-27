@@ -8,7 +8,10 @@ export const postData = item => {
   return dispatch => {
     dispatch({ type: FETCH_DATA_START });
     axios
-      .post("", item)
+      .post(
+        "https://cesar-buildweek-onelineaday.herokuapp.com/api/dailyposts",
+        item
+      )
       .then(response => {
         console.log(response.data.message);
         dispatch({ type: FETCH_DATA_SUCCESS, payload: response.data.message });
@@ -19,17 +22,17 @@ export const postData = item => {
   };
 };
 
-// export const getData = () => {
-//   return dispatch => {
-//     dispatch({ type: FETCH_DATA_START })
-//     axios
-//       .get("")
-//       .then(response => {
-//         console.log(response.data.message);
-//         dispatch({ type: FETCH_DATA_SUCCESS, payload: response.data.message })
-//       })
-//       .catch(error => {
-//         dispatch({ type: FETCH_DATA_FAILURE, payload: error.response })
-//       })
-//   }
-// }
+export const getData = () => {
+  return dispatch => {
+    dispatch({ type: FETCH_DATA_START });
+    axios
+      .get("https://cesar-buildweek-onelineaday.herokuapp.com/api/dailyposts")
+      .then(response => {
+        console.log("actions response", response.data);
+        dispatch({ type: FETCH_DATA_SUCCESS, payload: response.data });
+      })
+      .catch(error => {
+        dispatch({ type: FETCH_DATA_FAILURE, payload: error.response });
+      });
+  };
+};

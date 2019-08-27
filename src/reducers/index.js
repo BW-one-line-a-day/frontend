@@ -12,7 +12,7 @@ import {
 
 const initialState = {
   isLoading: false,
-  post: []
+  post: [],
   error: ""
 };
 

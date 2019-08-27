@@ -25,7 +25,7 @@ function App() {
         <Route path="/signup" component={Signup} />
         <Route path="/yesterday" component={Yesterday} />
         <Route path="/calendar" component={Calendar} />
-        <PrivateRoute path="/today" component={Today} />
+        <PrivateRoute exact path="/today" component={Today} />
       </BrowserRouter>
     </div>
   );
