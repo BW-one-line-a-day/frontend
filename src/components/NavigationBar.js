@@ -1,5 +1,5 @@
-import React from 'react'
-import { Tab, Menu, Icon } from 'semantic-ui-react'
+import React, { useState } from 'react'
+import { Tab, Menu, Icon, Segment } from 'semantic-ui-react'
 import { NavLink } from "react-router-dom";
 
 const Nav = props => (
@@ -12,10 +12,9 @@ const Nav = props => (
 
 const createLabel = (iconName, labelText) => <span><Icon name={iconName} />{labelText}</span>
 
-
-const todayLabel = createLabel("users", "Today")
-const yesterdayLabel = createLabel("building", "Yesterday")
-const calendarLabel = createLabel("video", "Calendar")
+const todayLabel = createLabel("write square", "Today")
+const yesterdayLabel = createLabel("book", "Yesterday")
+const calendarLabel = createLabel("calendar alternate outline", "Calendar")
 
 const panes = [
 	{ menuItem: <Menu.Item key='today' as={Nav} to={`/today`} content={todayLabel} /> },

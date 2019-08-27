@@ -8,13 +8,13 @@ import { NavLink, BrowserRouter, Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import Login from "./components/authentication/Login";
 import Signup from "./components/authentication/Signup";
-// import AppRouter from './components/AppRouter';
-import NavigationBar from './components/
+ import AppRouter from './components/AppRouter';
+import NavigationBar from './components/NavigationBar';
 
 function App() {
   return (
     <div className="App">
-      /* <AppRouter /> */
+       <AppRouter /> 
       <NavigationBar />
     
         {/* <NavLink to="/signup">Register</NavLink> */}
