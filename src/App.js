@@ -8,15 +8,18 @@ import { NavLink, BrowserRouter, Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import Login from "./components/authentication/Login";
 import Signup from "./components/authentication/Signup";
+// import AppRouter from './components/AppRouter';
+import NavigationBar from './components/
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      /* <AppRouter /> */
+      <NavigationBar />
+    
         {/* <NavLink to="/signup">Register</NavLink> */}
         <Route exact path="/" component={Login} />
         <Route path="/signup" component={Signup} />
-      </BrowserRouter>
     </div>
   );
 }
