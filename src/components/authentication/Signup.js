@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import "./Signup.scss";
+// import { logValidationWarning } from "jest-validate/build/utils";
+import logo from "../../images/logo.png";
+import joinUs from "../../images/joinUs.png";
+import myJournal from "../../images/myJournal.png";
+import welcomeBack from "../../images/welcomeBack.png";
 
 const Signup = props => {
   const [user, setUser] = useState({
@@ -36,31 +41,47 @@ const Signup = props => {
   };
 
   return (
-    <div className="Signup">
-      <form onSubmit={handleSubmit}>
-        <ul>
-          <li>
-            <label>Email</label>
-            <input
-              name="email"
-              value={user.email}
-              placeholder="example@mail.com"
-              onChange={handleChange}
-            />
-          </li>
-          <li>
-            <label>Password</label>
-            <input
-              name="password"
-              value={user.password}
-              placeholder="Enter Password"
-              onChange={handleChange}
-            />
-          </li>
-          <button>Submit</button>
-        </ul>
-      </form>
-    </div>
+    <>
+      <div className="Above-signup">
+        <img src={logo}></img>
+        {/* <button>Sign In</button> */}
+      </div>
+
+      <div className="Above-signup-button">
+        <button onClick={() => props.history.push("/")}>Sign In</button>
+      </div>
+
+      <div className="Signup">
+        <img src={joinUs}></img>
+        <form onSubmit={handleSubmit}>
+          <ul>
+            <li>
+              <label>Email</label>
+              <input
+                name="email"
+                value={user.email}
+                placeholder="enter email"
+                onChange={handleChange}
+              />
+            </li>
+            <li>
+              <label>Password</label>
+              <input
+                name="password"
+                value={user.password}
+                placeholder="choose password"
+                onChange={handleChange}
+              />
+            </li>
+            <button>Submit</button>
+            <h1></h1>
+            <h6 onClick={() => props.history.push("/")}>
+              Already have an account? Sign In
+            </h6>
+          </ul>
+        </form>
+      </div>
+    </>
   );
 };
 
