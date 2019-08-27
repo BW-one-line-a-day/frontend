@@ -1,7 +1,8 @@
 import React from "react";
 import NavigationBar from "./NavigationBar";
+import { connect } from "react-redux";
 
-export default function Calendar() {
+function Calendar() {
   return (
     <>
       <NavigationBar />
@@ -9,3 +10,14 @@ export default function Calendar() {
     </>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    ...state
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(Calendar);
