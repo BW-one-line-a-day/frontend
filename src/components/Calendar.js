@@ -1,9 +1,11 @@
-import React from 'react';
+import React from "react";
+import NavigationBar from "./NavigationBar";
 
 export default function Calendar() {
-
-  return(
-    <div>Calendar
-    </div>
-  )
+  return (
+    <>
+      <NavigationBar />
+      <div>Calendar</div>
+    </>
+  );
 }

@@ -30,7 +30,7 @@ export default function Login(props) {
       .then(response => {
         // console.log("user", user);
         localStorage.setItem("token", response.data.token);
-        props.history.push("/protected");
+        props.history.push("/today");
         console.log(response);
       })
       .catch(error => {
