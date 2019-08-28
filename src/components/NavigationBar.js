@@ -1,6 +1,3 @@
-import React from "react";
-import { Tab, Menu, Icon } from "semantic-ui-react";
-
 import React, { useState } from "react";
 import { Tab, Menu, Icon, Segment } from "semantic-ui-react";
 
