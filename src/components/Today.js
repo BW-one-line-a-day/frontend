@@ -18,6 +18,17 @@ function Today(props) {
   let year = date.getFullYear();
   let todayDate = month + "-" + day + "-" + year;
   let todayDateNoDashes = month.toString() + day.toString() + year.toString();
+
+  let a = props.post.filter(post => post.date === todayDateNoDashes);
+  console.log("A", a);
+
+  let b = a.map(notes => {
+    return notes.note;
+  });
+  console.log("B", b);
+
+  let c = b.length - 1;
+  console.log("C", b[c]);
   // let todayDateAsNum = parseInt(todayDateNoDashes);
 
   // console.log(day);
@@ -66,17 +77,17 @@ function Today(props) {
           Submit
         </Form.Button>
       </Form>
-      {props.post.map(user => (
+      {/* {props.post.map(user => (
         <div>
           <p>{user.note}</p>
         </div>
-      ))}
+      ))} */}
       {/* {props.post.filter((post, index, array) => {
-        console.log(post, index, array.length);
-        // if (array.length == 26) {
-        //   return <p>{post.note}</p>;
-        // }
+        console.log(post.note);
+        return post.note[index.length - 1];
       })} */}
+
+      <p>{b[c]}</p>
     </div>
   );
 }
