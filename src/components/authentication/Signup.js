@@ -14,7 +14,7 @@ const Signup = props => {
   const [user, setUser] = useState({
     email: "",
     password: "",
-    loading: true
+    loading: false
   });
 
   const handleChange = event => {
@@ -29,14 +29,15 @@ const Signup = props => {
         "https://cesar-buildweek-onelineaday.herokuapp.com/api/auth/register",
         user
       )
-      .then(_ => {
-        setUs
-      })
       .then(response => {
         // localStorage.setUser("token", response.data.password);
         // setUser({ loading: false });
         props.history.push("/");
+        setUser({ loading: false });
         console.log(response);
+      })
+      .then(_ => {
+        setUser({ loading: true });
       })
       .catch(error => {
         console.log(error.response);
@@ -47,56 +48,57 @@ const Signup = props => {
       });
   };
 
-  // if (user.loading === false) {
-  //   return (
-  //     <h3>
-  //       <Loader type="Plane" color="#E57458" height="100" width="100" />
-  //     </h3>
-  //   );
-  // }
-  return (
-    <>
-      <div className="Above-signup">
-        <img src={logo}></img>
-        {/* <button>Sign In</button> */}
-      </div>
+  if (user.loading === false) {
+    return (
+      <>
+        <div className="Above-signup">
+          <img src={logo}></img>
+          {/* <button>Sign In</button> */}
+        </div>
 
-      <div className="Above-signup-button">
-        <button onClick={() => props.history.push("/")}>Sign In</button>
-      </div>
+        <div className="Above-signup-button">
+          <button onClick={() => props.history.push("/")}>Sign In</button>
+        </div>
 
-      <div className="Signup">
-        <img src={joinUs}></img>
-        <form onSubmit={handleSubmit}>
-          <ul>
-            <li>
-              <label>Email</label>
-              <input
-                name="email"
-                value={user.email}
-                placeholder="enter email"
-                onChange={handleChange}
-              />
-            </li>
-            <li>
-              <label>Password</label>
-              <input
-                name="password"
-                value={user.password}
-                placeholder="choose password"
-                onChange={handleChange}
-              />
-            </li>
-            <button>Submit</button>
-            <h1></h1>
-            <h6 onClick={() => props.history.push("/")}>
-              Already have an account? Sign In
-            </h6>
-          </ul>
-        </form>
-      </div>
-    </>
-  );
+        <div className="Signup">
+          <img src={joinUs}></img>
+          <form onSubmit={handleSubmit}>
+            <ul>
+              <li>
+                <label>Email</label>
+                <input
+                  name="email"
+                  value={user.email}
+                  placeholder="enter email"
+                  onChange={handleChange}
+                />
+              </li>
+              <li>
+                <label>Password</label>
+                <input
+                  name="password"
+                  value={user.password}
+                  placeholder="choose password"
+                  onChange={handleChange}
+                />
+              </li>
+              <button>Submit</button>
+              <h1></h1>
+              <h6 onClick={() => props.history.push("/")}>
+                Already have an account? Sign In
+              </h6>
+            </ul>
+          </form>
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <h3>
+        <Loader type="Plane" color="#E57458" height="100" width="100" />
+      </h3>
+    );
+  }
 };
 
 export default Signup;

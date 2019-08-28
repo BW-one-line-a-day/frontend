@@ -42,9 +42,9 @@ function Today(props) {
     props.getData();
   }, []);
 
-  const handleDelete = event => {
-    props.deleteData(item);
-  };
+  // const handleDelete = event => {
+  //   props.deleteData(item);
+  // };
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -84,7 +84,6 @@ function Today(props) {
       </Form>
 
       <p>{last}</p>
-      <button onClick={handleDelete}>X</button>
     </div>
   );
 }

@@ -42,8 +42,10 @@ export const getData = () => {
 };
 
 export const deleteData = item => {
-  axios()
-    .delete`https://cesar-buildweek-onelineaday.herokuapp.com/api/dailyposts/${item.id}`
+  axios
+    .delete(
+      `https://cesar-buildweek-onelineaday.herokuapp.com/api/dailyposts/${item.id}`
+    )
 
     .then(response => {
       console.log(response);
