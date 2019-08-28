@@ -66,17 +66,17 @@ function Today(props) {
           Submit
         </Form.Button>
       </Form>
-      {/* {props.post.map(user => (
+      {props.post.map(user => (
         <div>
-          <p>{user.note.slice(-1)[0]}</p>
+          <p>{user.note}</p>
         </div>
-      ))} */}
-      {props.post.filter((post, index, array) => {
+      ))}
+      {/* {props.post.filter((post, index, array) => {
         console.log(post, index, array.length);
         // if (array.length == 26) {
         //   return <p>{post.note}</p>;
         // }
-      })}
+      })} */}
     </div>
   );
 }
