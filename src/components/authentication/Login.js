@@ -12,7 +12,8 @@ import welcomeBack from "../../images/welcomeBack.png";
 export default function Login(props) {
   const [user, setUser] = useState({
     email: "",
-    password: ""
+    password: "",
+    loading: false
   });
 
   const handleChange = event => {
@@ -32,6 +33,7 @@ export default function Login(props) {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("id", response.data.id);
         props.history.push("/today");
+        setUser({ loading: false });
         console.log(response);
       })
       .catch(error => {

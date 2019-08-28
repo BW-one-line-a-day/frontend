@@ -3,15 +3,9 @@ import React, { useState, useEffect } from "react";
 import NavigationBar from "./NavigationBar";
 import { Form, Input, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { postData, getData } from "../actions/index.js";
+import { postData, getData, deleteData } from "../actions/index.js";
 
 function Today(props) {
-  //axios request for list of previous entries on this day
-
-  // function filterFunction(note) {
-  //   if ()
-  // }
-
   let date = new Date();
   let day = date.getDate();
   let month = date.getMonth() + 1;
@@ -19,34 +13,44 @@ function Today(props) {
   let todayDate = month + "-" + day + "-" + year;
   let todayDateNoDashes = month.toString() + day.toString() + year.toString();
 
-  let a = props.post.filter(post => post.date === todayDateNoDashes);
-  console.log("A", a);
-
-  let b = a.map(notes => {
-    return notes.note;
-  });
-  console.log("B", b);
-
-  let c = b.length - 1;
-  console.log("C", b[c]);
-  // let todayDateAsNum = parseInt(todayDateNoDashes);
-
-  // console.log(day);
   const [item, setItem] = useState({
     note: "",
     user_id: localStorage.getItem("id"),
     date: todayDateNoDashes
   });
 
+  let post = props.post;
+
+  let idFilter = post.filter(id => {
+    if (id.user_id == item.user_id) {
+      return id;
+    }
+  });
+  console.log(idFilter);
+
+  let dateFilter = idFilter.filter(post => post.date === todayDateNoDashes);
+
+  let noteMap = dateFilter.map(notes => {
+    return notes.note;
+  });
+
+  let noteLength = noteMap.length - 1;
+
+  let last = noteMap[noteLength];
+
   useEffect(() => {
     props.getData();
   }, []);
+
+  const handleDelete = event => {
+    props.deleteData(item);
+  };
 
   const handleSubmit = event => {
     event.preventDefault();
     console.log("item", item);
     props.postData(item);
-
+    props.history.push("/yesterday");
     setItem({
       note: ""
     });
@@ -57,6 +61,7 @@ function Today(props) {
     setItem({ ...item, [event.target.name]: event.target.value });
   };
   console.log("props", props);
+
   return (
     //
     <div>
@@ -77,17 +82,9 @@ function Today(props) {
           Submit
         </Form.Button>
       </Form>
-      {/* {props.post.map(user => (
-        <div>
-          <p>{user.note}</p>
-        </div>
-      ))} */}
-      {/* {props.post.filter((post, index, array) => {
-        console.log(post.note);
-        return post.note[index.length - 1];
-      })} */}
 
-      <p>{b[c]}</p>
+      <p>{last}</p>
+      <button onClick={handleDelete}>X</button>
     </div>
   );
 }
@@ -95,11 +92,10 @@ function Today(props) {
 const mapStateToProps = state => {
   return {
     ...state
-    // post: state.post
   };
 };
 
 export default connect(
   mapStateToProps,
-  { postData, getData }
+  { postData, getData, deleteData }
 )(Today);

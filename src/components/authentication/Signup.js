@@ -7,11 +7,14 @@ import logo from "../../images/logo.png";
 import joinUs from "../../images/joinUs.png";
 import myJournal from "../../images/myJournal.png";
 import welcomeBack from "../../images/welcomeBack.png";
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 const Signup = props => {
   const [user, setUser] = useState({
     email: "",
-    password: ""
+    password: "",
+    loading: true
   });
 
   const handleChange = event => {
@@ -26,8 +29,12 @@ const Signup = props => {
         "https://cesar-buildweek-onelineaday.herokuapp.com/api/auth/register",
         user
       )
+      .then(_ => {
+        setUs
+      })
       .then(response => {
         // localStorage.setUser("token", response.data.password);
+        // setUser({ loading: false });
         props.history.push("/");
         console.log(response);
       })
@@ -40,6 +47,13 @@ const Signup = props => {
       });
   };
 
+  // if (user.loading === false) {
+  //   return (
+  //     <h3>
+  //       <Loader type="Plane" color="#E57458" height="100" width="100" />
+  //     </h3>
+  //   );
+  // }
   return (
     <>
       <div className="Above-signup">
