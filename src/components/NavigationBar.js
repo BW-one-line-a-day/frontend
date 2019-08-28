@@ -1,9 +1,15 @@
+<<<<<<< HEAD
 import React from "react";
 import { Tab, Menu, Icon } from "semantic-ui-react";
+=======
+import React, { useState } from 'react'
+import { Tab, Menu, Icon, Segment } from 'semantic-ui-react'
+>>>>>>> master
 import { NavLink } from "react-router-dom";
 
 const Nav = props => <NavLink exact {...props} activeClassName="active" />;
 
+<<<<<<< HEAD
 const createLabel = (iconName, labelText) => (
   <span>
     <Icon name={iconName} />
@@ -14,6 +20,11 @@ const createLabel = (iconName, labelText) => (
 const todayLabel = createLabel("users", "Today");
 const yesterdayLabel = createLabel("building", "Yesterday");
 const calendarLabel = createLabel("video", "Calendar");
+=======
+const todayLabel = createLabel("write square", "Today")
+const yesterdayLabel = createLabel("book", "Yesterday")
+const calendarLabel = createLabel("calendar alternate outline", "Calendar")
+>>>>>>> master
 
 const panes = [
   {

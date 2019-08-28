@@ -20,6 +20,7 @@ function App() {
       <BrowserRouter>
         {/* <AppRouter /> */}
         {/* <NavigationBar /> */}
+
         {/* <NavLink to="/signup">Register</NavLink> */}
         <Route exact path="/" component={Login} />
         <Route path="/signup" component={Signup} />
