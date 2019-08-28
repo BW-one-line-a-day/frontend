@@ -1,19 +1,28 @@
-import React from 'react';
+import React from "react";
+import NavigationBar from "./NavigationBar";
+import { connect } from "react-redux";
+// import { Form } from "semantic-ui-react";
 
-export default function Yesterday() {
-
-  let date = new Date();
-  let day = date.getDate() - 1;
-  let month = date.getMonth() + 1;
-  let year = date.getFullYear();
-
-  let todayDate = month + "-" + day + "-" + year;
-
-  return(
-  <>
-      <h2>Yesterday</h2>
-      <h3>{todayDate}</h3>
-      <div>Input placeholder</div>
-  </>
-  )
+function Yesterday() {
+  return (
+    <>
+      <NavigationBar />
+      <div>Yesterday</div>
+      {/* <FormData label="Entry for today" type="text" value="Quote" name="quote" />
+      <Form.Button onSubmit={handleSubmit} value="Submit" name="submit">
+        Edit
+      </Form.Button> */}
+    </>
+  );
 }
+
+const mapStateToProps = state => {
+  return {
+    ...state
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(Yesterday);

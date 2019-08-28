@@ -1,26 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import DatePick from "./DatePick";
-import Axios from 'axios';
+import React from "react";
+import NavigationBar from "./NavigationBar";
+import { connect } from "react-redux";
 
-export default function Calendar() {
-  const [date, setDate] = useState("")
-
-//   useEffect(() => {
-//     Axios
-//         .get(``)
-//         .then(res => {
-           
-//             setDate(res.data)
-//             console.log("res.data = ", res.data)
-//             console.log("res.date = ", res.data.date)})
-//         .catch(err => console.log("OOPS. API ERROR: ", err))
-// }, [date]);
-
-
-  return(
-    <div className="react-calendar">
+function Calendar() {
+  return (
+    <>
+      <NavigationBar />
       <div>Calendar</div>
-      {/* <DatePick date={date} setDate={setDate} /> */}
-    </div>
-  )
+    </>
+  );
 }
+
+const mapStateToProps = state => {
+  return {
+    ...state
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(Calendar);
