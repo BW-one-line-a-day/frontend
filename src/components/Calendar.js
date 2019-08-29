@@ -1,52 +1,43 @@
-// import React from "react";
+import React, { useState, useEffect } from "react";
+
 import NavigationBar from "./NavigationBar";
-// import { connect } from "react-redux";
+import { Form, Input, Button } from "semantic-ui-react";
+import { connect } from "react-redux";
+import { postData, getData, deleteData } from "../actions/index.js";
 
-// function Calendar() {
-//   return (
-//     <>
-//       <NavigationBar />
-//       <div>Calendar</div>
-//     </>
-//   );
-// }
+function Calendar(props) {
+  let item = props.post;
 
-// const mapStateToProps = state => {
-//   return {
-//     ...state
-//   };
-// };
-
-// export default connect(
-//   mapStateToProps,
-//   {}
-// )(Calendar);
-
-import React from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import "react-datepicker/dist/react-datepicker-cssmodules.css";
-
-export default function DatePick(props) {
-  function handleChange(date) {
-    function convertDate(date = new Date()) {
-      let year = date.getFullYear();
-      let month = date.getMonth() + 1;
-      let day = date.getDate();
-      if (month < 10) month = "0" + month;
-      if (day < 10) day = "0" + day;
-      return `${year}-${month}-${day}`;
-    }
-    props.setDate(convertDate(date));
-  }
+  useEffect(() => {
+    props.getData();
+  }, []);
+  const handleDelete = event => {
+    event.preventDefault();
+    props.deleteData(item);
+  };
 
   return (
-    <>
+    <div>
       <NavigationBar />
-      <h2>
-        See past lines:{" "}
-        <DatePicker selected={new Date(props.date)} onChange={handleChange} />
-      </h2>
-    </>
+      <h2>Calendar</h2>
+      {props.post.map(thing => (
+        <div>
+          <h2>Note: {thing.note}</h2>
+          <p>Date: {thing.date}</p>
+          <button onClick={handleDelete}>Delete Post</button>
+        </div>
+      ))}
+    </div>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    ...state
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { postData, getData, deleteData }
+)(Calendar);

@@ -4,6 +4,7 @@ import NavigationBar from "./NavigationBar";
 import { Form, Input, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { postData, getData } from "../actions/index.js";
+import axios from "axios";
 
 function Yesterday(props) {
   let date = new Date();
@@ -28,20 +29,26 @@ function Yesterday(props) {
     }
   });
 
-  let dateFilter = idFilter.filter(
-    post => post.date === yesterday && post.date === month
-  );
+  let dateFilter = idFilter.filter(post => {
+    if (post.date === yesterdayDateNoDashes) {
+      return post;
+    }
+  });
 
   let noteMap = dateFilter.map(notes => {
     return notes.note;
   });
+  console.log(noteMap);
 
   let noteLength = noteMap.length - 1;
   let last = noteMap[noteLength];
 
+  const [yesterdayNote, setYesterdayNote] = useState([]);
+
   useEffect(() => {
     props.getData();
   }, []);
+  console.log("yesterdayNote:", yesterdayNote);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -65,20 +72,19 @@ function Yesterday(props) {
       <h2>Yesterday</h2>
       <h3>{yesterdayDate}</h3>
       <h2>Quote from yesterday</h2>
-      {
-        <Form onSubmit={handleSubmit}>
-          <Input
-            type="text"
-            value={item.note}
-            name="note"
-            onChange={handleChange}
-          />
-          <Form.Button onSubmit={handleSubmit} value="Submit" name="submit">
-            Edit
-          </Form.Button>
-        </Form>
-        //  <p>{last}</p>
-      }
+
+      <Form onSubmit={handleSubmit}>
+        <Input
+          type="text"
+          value={item.note}
+          name="note"
+          onChange={handleChange}
+        />
+        <Form.Button onSubmit={handleSubmit} value="Submit" name="submit">
+          Edit
+        </Form.Button>
+      </Form>
+      <p>{last}</p>
     </>
   );
 }

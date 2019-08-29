@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import NavigationBar from "./NavigationBar";
 import { Form, Input, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { postData, getData, deleteData } from "../actions/index.js";
+import { postData, getData } from "../actions/index.js";
 
 function Today(props) {
   let date = new Date();
@@ -96,5 +96,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { postData, getData, deleteData }
+  { postData, getData }
 )(Today);

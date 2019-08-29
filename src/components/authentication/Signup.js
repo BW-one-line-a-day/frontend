@@ -31,13 +31,9 @@ const Signup = props => {
       )
       .then(response => {
         // localStorage.setUser("token", response.data.password);
-        // setUser({ loading: false });
         props.history.push("/");
         setUser({ loading: false });
         console.log(response);
-      })
-      .then(_ => {
-        setUser({ loading: true });
       })
       .catch(error => {
         console.log(error.response);
@@ -55,11 +51,9 @@ const Signup = props => {
           <img src={logo}></img>
           {/* <button>Sign In</button> */}
         </div>
-
         <div className="Above-signup-button">
           <button onClick={() => props.history.push("/")}>Sign In</button>
         </div>
-
         <div className="Signup">
           <img src={joinUs}></img>
           <form onSubmit={handleSubmit}>
