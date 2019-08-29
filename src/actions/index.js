@@ -32,7 +32,7 @@ export const getData = () => {
     axios
       .get("https://cesar-buildweek-onelineaday.herokuapp.com/api/dailyposts")
       .then(response => {
-        console.log("actions response", response.data);
+        // console.log("actions response", response.data);
         dispatch({ type: FETCH_DATA_SUCCESS, payload: response.data });
       })
       .catch(error => {

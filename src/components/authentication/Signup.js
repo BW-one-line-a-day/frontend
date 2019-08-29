@@ -13,8 +13,8 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 const Signup = props => {
   const [user, setUser] = useState({
     email: "",
-    password: "",
-    loading: false
+    password: ""
+    // loading: false
   });
 
   const handleChange = event => {
@@ -32,7 +32,7 @@ const Signup = props => {
       .then(response => {
         // localStorage.setUser("token", response.data.password);
         props.history.push("/");
-        setUser({ loading: false });
+        // setUser({ loading: false });
         console.log(response);
       })
       .catch(error => {
@@ -44,55 +44,55 @@ const Signup = props => {
       });
   };
 
-  if (user.loading === false) {
-    return (
-      <>
-        <div className="Above-signup">
-          <img src={logo}></img>
-          {/* <button>Sign In</button> */}
-        </div>
-        <div className="Above-signup-button">
-          <button onClick={() => props.history.push("/")}>Sign In</button>
-        </div>
-        <div className="Signup">
-          <img src={joinUs}></img>
-          <form onSubmit={handleSubmit}>
-            <ul>
-              <li>
-                <label>Email</label>
-                <input
-                  name="email"
-                  value={user.email}
-                  placeholder="enter email"
-                  onChange={handleChange}
-                />
-              </li>
-              <li>
-                <label>Password</label>
-                <input
-                  name="password"
-                  value={user.password}
-                  placeholder="choose password"
-                  onChange={handleChange}
-                />
-              </li>
-              <button>Submit</button>
-              <h1></h1>
-              <h6 onClick={() => props.history.push("/")}>
-                Already have an account? Sign In
-              </h6>
-            </ul>
-          </form>
-        </div>
-      </>
-    );
-  } else {
-    return (
-      <h3>
-        <Loader type="Plane" color="#E57458" height="100" width="100" />
-      </h3>
-    );
-  }
+  // if (user.loading === false) {
+  return (
+    <>
+      <div className="Above-signup">
+        <img src={logo}></img>
+        {/* <button>Sign In</button> */}
+      </div>
+      <div className="Above-signup-button">
+        <button onClick={() => props.history.push("/")}>Sign In</button>
+      </div>
+      <div className="Signup">
+        <img src={joinUs}></img>
+        <form onSubmit={handleSubmit}>
+          <ul>
+            <li>
+              <label>Email</label>
+              <input
+                name="email"
+                value={user.email}
+                placeholder="enter email"
+                onChange={handleChange}
+              />
+            </li>
+            <li>
+              <label>Password</label>
+              <input
+                name="password"
+                value={user.password}
+                placeholder="choose password"
+                onChange={handleChange}
+              />
+            </li>
+            <button>Submit</button>
+            <h1></h1>
+            <h6 onClick={() => props.history.push("/")}>
+              Already have an account? Sign In
+            </h6>
+          </ul>
+        </form>
+      </div>
+    </>
+  );
+  // } else {
+  //   return (
+  //     <h3>
+  //       <Loader type="Plane" color="#E57458" height="100" width="100" />
+  //     </h3>
+  //   );
+  // }
 };
 
 export default Signup;

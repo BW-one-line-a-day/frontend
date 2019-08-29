@@ -33,7 +33,7 @@ export default function Login(props) {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("id", response.data.id);
         props.history.push("/today");
-        setUser({ loading: false });
+        // setUser({ loading: false });
         console.log(response);
       })
       .catch(error => {

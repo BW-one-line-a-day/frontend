@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css?family=Satisfy&display=swap");
+@import "./Mixins.scss";
+
+.today {
+  height: 100vh;
+  background-color: #d6bee0;
+}
+
+.submit {
+  @include submit;
+  border: 1px solid black;
+}
+
+.todayHeader {
+  @include cursiveFont;
+  background-color: #5d147c;
+  font-size: 2em;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 2em;
+
+  // @include paragraph-border-bkgd;
+}
+
+.paragraph {
+  @include para-bkgd;
+  @include paragraph-border-bkgd;
+}
+
+.input {
+  width: 75%;
+  height: 100px;
+}

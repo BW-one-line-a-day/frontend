@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css?family=Satisfy&display=swap");
+@import "./Mixins.scss";
+
+.yesterday {
+  max-height: 800px;
+  background-color: #d6bee0;
+}
+
+.submit {
+  @include submit;
+  border: 1px solid black;
+}
+
+.todayHeader {
+  @include cursiveFont;
+  color: #d6bee0;
+  font-size: 2em;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  @include paragraph-border-bkgd;
+}
+
+.paragraph {
+  //   @include para-bkgd;
+  width: 75%;
+  height: 200px;
+}
+-quote .yesterday {
+  background-color: #bfe6ed;
+}

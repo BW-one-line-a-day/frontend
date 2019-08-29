@@ -1,19 +1,33 @@
 import React, { useState, useEffect } from "react";
 // import DailyEntry from "./DailyEntry";
 import NavigationBar from "./NavigationBar";
+import DailyCard from "./DailyCard.js";
 import { Form, Input, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { postData, getData } from "../actions/index.js";
 import axios from "axios";
+import myJournal from "../images/myJournal.png";
+import "./Yesterday";
 
 function Yesterday(props) {
   let date = new Date();
   let yesterday = date.getDate() - 1;
+  //if less tha n10
+  if (yesterday < 10) {
+    yesterday = "0" + yesterday.toString();
+  } else {
+    yesterday = yesterday.toString();
+  }
   let month = date.getMonth() + 1;
+  //if less tha n10
+  if (month < 10) {
+    month = "0" + month.toString();
+  } else {
+    month = month.toString();
+  }
   let year = date.getFullYear();
   let yesterdayDate = month + "-" + yesterday + "-" + year;
-  let yesterdayDateNoDashes =
-    month.toString() + yesterday.toString() + year.toString();
+  let yesterdayDateNoDashes = month + yesterday + year.toString();
 
   const [item, setItem] = useState({
     note: "",
@@ -30,25 +44,15 @@ function Yesterday(props) {
   });
 
   let dateFilter = idFilter.filter(post => {
-    if (post.date === yesterdayDateNoDashes) {
+    if (post.date.substring(0, 4) === yesterdayDateNoDashes.substring(0, 4)) {
       return post;
     }
   });
-
-  let noteMap = dateFilter.map(notes => {
-    return notes.note;
-  });
-  console.log(noteMap);
-
-  let noteLength = noteMap.length - 1;
-  let last = noteMap[noteLength];
-
-  const [yesterdayNote, setYesterdayNote] = useState([]);
+  const dateFilterReversed = dateFilter.reverse();
 
   useEffect(() => {
     props.getData();
   }, []);
-  console.log("yesterdayNote:", yesterdayNote);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -64,28 +68,18 @@ function Yesterday(props) {
     console.log(item);
     setItem({ ...item, [event.target.name]: event.target.value });
   };
-  console.log("props", props);
 
   return (
-    <>
+    <div class="yesterday">
+      <img src={myJournal} alt="My Journal"></img>
       <NavigationBar />
-      <h2>Yesterday</h2>
-      <h3>{yesterdayDate}</h3>
-      <h2>Quote from yesterday</h2>
-
-      <Form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          value={item.note}
-          name="note"
-          onChange={handleChange}
-        />
-        <Form.Button onSubmit={handleSubmit} value="Submit" name="submit">
-          Edit
-        </Form.Button>
-      </Form>
-      <p>{last}</p>
-    </>
+      <h1>Yesterday</h1>
+      <div className="yesterday-quote">
+        {dateFilterReversed.map((note, index) => {
+          return <DailyCard key={index} note={note} />;
+        })}
+      </div>
+    </div>
   );
 }
 
