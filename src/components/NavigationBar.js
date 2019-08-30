@@ -9,7 +9,7 @@ const createLabel = labelText => <span className="navTab">{labelText}</span>;
 
 const todayLabel = createLabel("Today");
 const yesterdayLabel = createLabel("Yesterday");
-const calendarLabel = createLabel("Calendar");
+const calendarLabel = createLabel("All");
 
 const panes = [
   {

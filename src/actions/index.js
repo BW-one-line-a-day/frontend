@@ -21,6 +21,7 @@ export const postData = item => {
         // getData()(dispatch);
       })
       .catch(error => {
+        console.log(error);
         dispatch({ type: FETCH_DATA_FAILURE, payload: error.response });
       });
   };

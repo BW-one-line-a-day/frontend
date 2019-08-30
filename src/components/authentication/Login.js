@@ -54,7 +54,9 @@ export default function Login(props) {
       </div>
 
       <div className="Above-signup-button">
-        <button onClick={() => props.history.push("/signup")}>Sign Up</button>
+        <button onClick={() => props.history.push("/signup")}>
+          Sign Up Page
+        </button>
       </div>
       <div className="Login">
         <img src={welcomeBack}></img>
@@ -63,6 +65,7 @@ export default function Login(props) {
             <li>
               <label>Email</label>
               <input
+                type="email"
                 name="email"
                 value={user.email}
                 placeholder="enter email"
@@ -72,6 +75,7 @@ export default function Login(props) {
             <li>
               <label>Password</label>
               <input
+                type="password"
                 name="password"
                 value={user.password}
                 placeholder="enter password"

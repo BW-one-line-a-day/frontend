@@ -2,8 +2,13 @@
 @import "./Mixins.scss";
 
 .yesterday {
-  max-height: 800px;
   background-color: #d6bee0;
+  height: 100%;
+  img {
+    @media (max-width: 800px) {
+      width: 400px;
+    }
+  }
 }
 
 .submit {
@@ -20,14 +25,20 @@
 .form {
   display: flex;
   flex-direction: column;
-  @include paragraph-border-bkgd;
 }
 
 .paragraph {
   //   @include para-bkgd;
   width: 75%;
-  height: 200px;
-}
--quote .yesterday {
+  margin: auto;
+  padding: 10px;
+  text-align: left;
   background-color: #bfe6ed;
+  border: 2px solid #918f95;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.dateDisplay {
+  padding-top: 20px;
 }

@@ -52,7 +52,7 @@ const Signup = props => {
         {/* <button>Sign In</button> */}
       </div>
       <div className="Above-signup-button">
-        <button onClick={() => props.history.push("/")}>Sign In</button>
+        <button onClick={() => props.history.push("/")}>Sign In Page</button>
       </div>
       <div className="Signup">
         <img src={joinUs}></img>
@@ -61,6 +61,7 @@ const Signup = props => {
             <li>
               <label>Email</label>
               <input
+                type="email"
                 name="email"
                 value={user.email}
                 placeholder="enter email"
@@ -70,6 +71,7 @@ const Signup = props => {
             <li>
               <label>Password</label>
               <input
+                type="password"
                 name="password"
                 value={user.password}
                 placeholder="choose password"

@@ -2,8 +2,14 @@
 @import "./Mixins.scss";
 
 .today {
-  height: 100vh;
+  height: 100%;
   background-color: #d6bee0;
+
+  img {
+    @media (max-width: 800px) {
+      width: 400px;
+    }
+  }
 }
 
 .submit {
@@ -17,22 +23,84 @@
   font-size: 2em;
 }
 
-.form {
+.ui.form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  height: 2em;
-
-  // @include paragraph-border-bkgd;
+  margin: auto;
+  // height: 1em;
 }
 
 .paragraph {
   @include para-bkgd;
-  @include paragraph-border-bkgd;
 }
 
-.input {
+.submit-class {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: auto;
+  width: 600px;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  input {
+    // height: 100px;
+    // border: 2px solid blue;
+    // width: 800px;
+    @media (max-width: 800px) {
+      width: 400px;
+    }
+  }
+  button {
+    height: 2em;
+    width: 50px;
+    width: 50px;
+  }
+
+  .ui.button {
+    padding: 2px;
+  }
+}
+.customButtonBorder {
+  border: 2px solid #918f95;
+}
+
+.today-quote {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 7em;
+  margin: auto;
+  margin-bottom: 2em;
   width: 75%;
-  height: 100px;
+  border-bottom: 2px solid #918f95;
+  border-top: 2px solid #918f95;
+
+  .editBlock {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+  }
+}
+
+.edit {
+  background-color: #bfe6ed;
+}
+
+.input-field {
+  height: 2rem;
+  width: 800px;
+  @media (max-width: 800px) {
+    width: 70%;
+    height: 20px;
+    margin-left: -120px;
+  }
+}
+
+.pushLeft {
+  margin-left: 12.5%;
 }

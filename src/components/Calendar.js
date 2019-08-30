@@ -7,28 +7,48 @@ import { connect } from "react-redux";
 import { postData, getData, deleteData } from "../actions/index.js";
 
 function Calendar(props) {
-  let item = props.post;
+  let post = props.post;
+  let date = new Date();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  let year = date.getFullYear();
+  let todayDateNoDashes = month.toString() + day.toString() + year.toString();
+
+  const [item, setItem] = useState({
+    note: "",
+    user_id: localStorage.getItem("id"),
+    date: todayDateNoDashes,
+    editing: false
+  });
+
+  let idFilter = post.filter(id => {
+    if (id.user_id == item.user_id) {
+      return id;
+    }
+  });
+
+  console.log(idFilter);
 
   useEffect(() => {
     props.getData();
   }, []);
-  const handleDelete = event => {
-    event.preventDefault();
-    props.deleteData(item);
-  };
 
   return (
-    <div className="Calendar">
+    <div className="main-container">
       <img src={myJournal} alt="My Journal"></img>
-      <NavigationBar />
-      <h2>Calendar</h2>
 
-      {props.post.map(thing => (
-        <div className="a">
-          <h2>Note: {thing.note}</h2>
-          <p>Date: {thing.date}</p>
-        </div>
-      ))}
+      <div className="pushLeft">
+        <NavigationBar />
+      </div>
+      <h2>All</h2>
+      <div className="Calendar">
+        {idFilter.map(thing => (
+          <div className="date-and-note">
+            <h2>{thing.note}</h2>
+            <p>{thing.date}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

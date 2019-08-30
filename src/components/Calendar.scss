@@ -1,6 +1,37 @@
-.Calendar {
-  .a {
+@import "./Mixins.scss";
+
+.main-container {
+  background-color: #d6bee0;
+  height: 100%;
+  width: 100%;
+  img {
+    @media (max-width: 800px) {
+      width: 400px;
+      margin: auto;
+    }
+  }
+
+  .Calendar {
     display: flex;
     flex-direction: column-reverse;
+    width: 75%;
+    margin: auto;
+
+    .date-and-note {
+      margin-bottom: 20px;
+      border: 2px solid #918f95;
+      border-radius: 3px;
+      display: flex;
+      flex-direction: column-reverse;
+      @include inactive-tab;
+    }
+    @media (max-width: 800px) {
+      width: 500px;
+      margin: auto;
+    }
   }
+}
+
+.pushLeft {
+  margin-left: 12.5%;
 }

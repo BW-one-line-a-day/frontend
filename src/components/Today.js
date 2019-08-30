@@ -7,16 +7,29 @@ import { connect } from "react-redux";
 import { postData, getData } from "../actions/index.js";
 import "./Today.scss";
 import myJournal from "../images/myJournal.png";
+import DailyCard from "./DailyCard.js";
 
 // const NavigationBar = styled(NavigationBar)`
 //    color:
 // `;
 
 function Today(props) {
-  // console.log(props.post);
+  console.log(props.post);
   let date = new Date();
   let day = date.getDate();
+  //if less than 10
+  if (day < 10) {
+    day = "0" + day.toString();
+  } else {
+    day = day.toString();
+  }
   let month = date.getMonth() + 1;
+  //if less than 10
+  if (month < 10) {
+    month = "0" + month.toString();
+  } else {
+    month = month.toString();
+  }
   let year = date.getFullYear();
   let todayDate = month + "-" + day + "-" + year;
   let todayDateNoDashes = month.toString() + day.toString() + year.toString();
@@ -25,7 +38,7 @@ function Today(props) {
     note: "",
     user_id: localStorage.getItem("id"),
     date: todayDateNoDashes,
-    editing: true
+    editing: false
   });
 
   const initialNote = {
@@ -44,9 +57,18 @@ function Today(props) {
       return id;
     }
   });
+
   // console.log(idFilter);
 
   let dateFilter = idFilter.filter(post => post.date === todayDateNoDashes);
+
+  let dateFilterDayMonth = idFilter.filter(post => {
+    if (post.date.substring(0, 4) === todayDateNoDashes.substring(0, 4)) {
+      return post;
+    }
+  });
+  let dateFilterReversed = dateFilterDayMonth.reverse();
+  dateFilterReversed.shift();
 
   let todayPost = dateFilter[dateFilter.length - 1];
   todayPost = [todayPost];
@@ -66,8 +88,13 @@ function Today(props) {
 
   useEffect(() => {
     props.getData();
+    console.log("working");
   }, []);
 
+  const toggleEditing = () => {
+    setItem({ editing: !item.editing });
+  };
+  console.log(item.editing);
   const handleDelete = postId => {
     // let newFilter = post.filter(element => element.id === post.id);
 
@@ -76,6 +103,7 @@ function Today(props) {
         `https://cesar-buildweek-onelineaday.herokuapp.com/api/dailyposts/${postId}`
       )
       .then(response => {
+        window.location.reload();
         console.log(response);
       })
       .catch(error => {
@@ -101,8 +129,10 @@ function Today(props) {
       )
       .then(res => {
         console.log(res);
+        window.location.reload();
         setItem({ note: "" });
       })
+
       .catch(err => console.error("error", err.response));
   };
 
@@ -126,48 +156,71 @@ function Today(props) {
     //
     <div className="today">
       <img src={myJournal} alt="My Journal"></img>
-      <NavigationBar />
-      <h3>{todayDate}</h3>
+      <div className="pushLeft">
+        <NavigationBar />
+      </div>
+      {/* <h3>{todayDate}</h3> */}
+      <h1>Today</h1>
+
       <Form onSubmit={handleSubmit}>
-        <Input
-          className="input-field"
-          type="text"
-          value={item.note}
-          name="note"
-          onChange={handleChange}
-        />
-        <Button
-          className="ui teal unattached bottom medium button"
-          value="Submit"
-          type="submit"
-        >
-          Submit
-        </Button>
+        <div className="submit-class">
+          <Input
+            className="input-field"
+            type="text"
+            value={item.note}
+            name="note"
+            onChange={handleChange}
+          />
+          <Button
+            className="ui teal unattached button customButtonBorder"
+            value="Submit"
+            type="submit"
+          >
+            Submit
+          </Button>
+        </div>
       </Form>
       <br></br>
       {todayPost[0] &&
         todayPost.map(notes => {
           return (
-            <div>
+            <div className="today-quote">
               <h1>{notes.note}</h1>
-              <p>{notes.id}</p>
-              <button onClick={() => handleDelete(notes.id)}>delete</button>
-              {/* <button onClick={() => editOneNote(id)}>Edit</button> */}
-              <label>Input for .put</label>
-              <input
-                onChange={e =>
-                  setEditNote({ ...editNote, note: e.target.value })
-                }
-                value={editNote.note}
-              />
-              <button onClick={() => handleEdit(notes.id)}>Submit edit</button>
+              {/* <p>{notes.id}</p> */}
+              <button
+                className="ui teal unattached button customButtonBorder"
+                onClick={() => handleDelete(notes.id)}
+              >
+                Delete today's note
+              </button>
+              {/* <button onClick={toggleEditing}>Redo today's note</button> */}
+              <div className="editBlock">
+                <input
+                  placeholder="Redo today's note"
+                  onChange={e =>
+                    setEditNote({ ...editNote, note: e.target.value })
+                  }
+                  value={editNote.note}
+                />
+                <button
+                  className="ui teal unattached button customButtonBorder"
+                  onClick={() => handleEdit(notes.id)}
+                >
+                  Submit edit
+                </button>
+              </div>
             </div>
           );
         })}
+      <div>
+        {todayPost[0] &&
+          dateFilterReversed.map((note, index) => {
+            return <DailyCard key={index} note={note} />;
+          })}
+      </div>
     </div>
   );
 }
-//const result = words.filter(word => word.length > 6);
 const mapStateToProps = state => {
   return {
     ...state

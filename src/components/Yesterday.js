@@ -7,19 +7,19 @@ import { connect } from "react-redux";
 import { postData, getData } from "../actions/index.js";
 import axios from "axios";
 import myJournal from "../images/myJournal.png";
-import "./Yesterday";
+import "./Yesterday.scss";
 
 function Yesterday(props) {
   let date = new Date();
   let yesterday = date.getDate() - 1;
-  //if less tha n10
+  //if less than 10
   if (yesterday < 10) {
     yesterday = "0" + yesterday.toString();
   } else {
     yesterday = yesterday.toString();
   }
   let month = date.getMonth() + 1;
-  //if less tha n10
+  //if less than 10
   if (month < 10) {
     month = "0" + month.toString();
   } else {
@@ -48,36 +48,28 @@ function Yesterday(props) {
       return post;
     }
   });
+
   const dateFilterReversed = dateFilter.reverse();
+
+  let yesterdayPost = dateFilterReversed[dateFilterReversed.length - 1];
+  yesterdayPost = [yesterdayPost];
 
   useEffect(() => {
     props.getData();
   }, []);
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    console.log("item", item);
-    props.postData(item);
-    props.history.push("/yesterday");
-    setItem({
-      note: ""
-    });
-  };
-
-  const handleChange = event => {
-    console.log(item);
-    setItem({ ...item, [event.target.name]: event.target.value });
-  };
-
   return (
-    <div class="yesterday">
+    <div className="yesterday">
       <img src={myJournal} alt="My Journal"></img>
-      <NavigationBar />
+      <div className="pushLeft">
+        <NavigationBar />
+      </div>
       <h1>Yesterday</h1>
-      <div className="yesterday-quote">
-        {dateFilterReversed.map((note, index) => {
-          return <DailyCard key={index} note={note} />;
-        })}
+      <div>
+        {yesterdayPost[0] &&
+          dateFilterReversed.map((note, index) => {
+            return <DailyCard key={index} note={note} />;
+          })}
       </div>
     </div>
   );
