@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css?family=Satisfy&display=swap");
+@import "./Mixins.scss";
+
+.yesterday {
+  background-color: #d6bee0;
+  height: 100%;
+  img {
+    @media (max-width: 800px) {
+      width: 400px;
+    }
+  }
+}
+
+.submit {
+  @include submit;
+  border: 1px solid black;
+}
+
+.todayHeader {
+  @include cursiveFont;
+  color: #d6bee0;
+  font-size: 2em;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.paragraph {
+  //   @include para-bkgd;
+  width: 75%;
+  margin: auto;
+  padding: 10px;
+  text-align: left;
+  background-color: #bfe6ed;
+  border: 2px solid #918f95;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.dateDisplay {
+  padding-top: 20px;
+}

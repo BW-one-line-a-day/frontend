@@ -12,14 +12,14 @@
 .Above-signup-button {
   button {
     margin-bottom: 0px;
-    background: #efeef3;
+    background: #d6bee0;
     height: 50px;
-    width: 120px;
+    width: 160px;
     font-family: "Satisfy", cursive;
     font-size: 2rem;
     border: none;
-    display: flex;
-    text-align: right;
+    // display: flex;
+    text-align: center;
   }
 }
 
@@ -36,10 +36,13 @@
     li {
       label {
         font-size: 2.5rem;
-        // border: 1px solid red;
+        padding: 10px;
         width: 500px;
         display: flex;
         align-content: flex-start;
+        @media (max-width: 800px) {
+          margin: auto;
+        }
       }
       display: flex;
       flex-direction: column;
@@ -51,10 +54,10 @@
         height: 100px;
         margin-bottom: 20px;
         border: none;
-        border-radius: 3px;
+        border-radius: 10px;
         font-size: 3rem;
         @media (max-width: 800px) {
-          width: 450px;
+          width: 400px;
         }
       }
     }
@@ -74,7 +77,7 @@
     h1 {
       margin-top: 40px;
       width: 500px;
-      margin-left: 420px;
+      margin: auto;
       justify-content: center;
       border-bottom: 1px solid black;
       @media (max-width: 800px) {
@@ -85,6 +88,7 @@
 
     h6 {
       font-size: 1rem;
+      margin: auto;
     }
   }
 }

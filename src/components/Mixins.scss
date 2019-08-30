@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css?family=Satisfy&display=swap");
+
+@mixin active-tab-clrbkgd {
+  background-color: purple;
+}
+
+@mixin inactive-tab-clrbkgd {
+  background-color: #80c9db;
+}
+
+@mixin submit {
+  background-color: #80c9db;
+}
+
+@mixin para-bkgd {
+  background-color: #80c9db;
+}
+
+@mixin inactive-tab {
+  background-color: #bfe6ed;
+}
+@mixin cursiveFont {
+  font-family: "Satisfy", cursive;
+}

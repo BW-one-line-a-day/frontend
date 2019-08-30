@@ -32,13 +32,11 @@
   }
 }
 
-.triangle-down {
-  position: fixed;
-  top: 142px;
-  width: 0;
-  height: 0;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-  border-top: 40px solid red;
-  border-radius: 0%;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Satisfy", cursive;
 }

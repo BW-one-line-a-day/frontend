@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css?family=Satisfy&display=swap");
+
+@mixin cursiveFont {
+  font-family: "Satisfy", cursive;
+}
+
+.navTab {
+  @include cursiveFont;
+  font-size: 2em;
+  margin-left: 12.5%;
+}

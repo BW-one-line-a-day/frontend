@@ -7,11 +7,14 @@ import logo from "../../images/logo.png";
 import joinUs from "../../images/joinUs.png";
 import myJournal from "../../images/myJournal.png";
 import welcomeBack from "../../images/welcomeBack.png";
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 const Signup = props => {
   const [user, setUser] = useState({
     email: "",
     password: ""
+    // loading: false
   });
 
   const handleChange = event => {
@@ -29,6 +32,7 @@ const Signup = props => {
       .then(response => {
         // localStorage.setUser("token", response.data.password);
         props.history.push("/");
+        // setUser({ loading: false });
         console.log(response);
       })
       .catch(error => {
@@ -40,17 +44,16 @@ const Signup = props => {
       });
   };
 
+  // if (user.loading === false) {
   return (
     <>
       <div className="Above-signup">
         <img src={logo}></img>
         {/* <button>Sign In</button> */}
       </div>
-
       <div className="Above-signup-button">
-        <button onClick={() => props.history.push("/")}>Sign In</button>
+        <button onClick={() => props.history.push("/")}>Sign In Page</button>
       </div>
-
       <div className="Signup">
         <img src={joinUs}></img>
         <form onSubmit={handleSubmit}>
@@ -58,6 +61,7 @@ const Signup = props => {
             <li>
               <label>Email</label>
               <input
+                type="email"
                 name="email"
                 value={user.email}
                 placeholder="enter email"
@@ -67,6 +71,7 @@ const Signup = props => {
             <li>
               <label>Password</label>
               <input
+                type="password"
                 name="password"
                 value={user.password}
                 placeholder="choose password"
@@ -83,6 +88,13 @@ const Signup = props => {
       </div>
     </>
   );
+  // } else {
+  //   return (
+  //     <h3>
+  //       <Loader type="Plane" color="#E57458" height="100" width="100" />
+  //     </h3>
+  //   );
+  // }
 };
 
 export default Signup;

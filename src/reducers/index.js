@@ -1,7 +1,8 @@
 import {
   FETCH_DATA_START,
   FETCH_DATA_SUCCESS,
-  FETCH_DATA_FAILURE
+  FETCH_DATA_FAILURE,
+  POST_DATA_SUCCESS
 } from "../actions";
 
 // let date = new Date();
@@ -13,7 +14,8 @@ import {
 const initialState = {
   isLoading: false,
   post: [],
-  error: ""
+  error: "",
+  createdMessage: true
 };
 
 export const reducer = (state = initialState, action) => {
@@ -22,7 +24,8 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: true,
-        error: ""
+        error: "",
+        createdMessage: false
       };
     case FETCH_DATA_SUCCESS:
       return {
@@ -30,6 +33,11 @@ export const reducer = (state = initialState, action) => {
         isLoading: false,
         error: "",
         post: action.payload
+      };
+    case POST_DATA_SUCCESS:
+      return {
+        ...state,
+        createdMessage: true
       };
     default:
       return state;
