@@ -18,7 +18,7 @@ export default function Login(props) {
 
   const handleChange = event => {
     setUser({ ...user, [event.target.name]: event.target.value });
-    console.log(event.target.value);
+    // console.log(event.target.value);
   };
 
   const handleSubmit = event => {
@@ -34,10 +34,10 @@ export default function Login(props) {
         localStorage.setItem("id", response.data.id);
         props.history.push("/today");
         // setUser({ loading: false });
-        console.log(response);
+        // console.log(response);
       })
       .catch(error => {
-        console.log("error", error.response);
+        // console.log("error", error.response);
         // console.log("user", user);
         setUser({
           username: "",

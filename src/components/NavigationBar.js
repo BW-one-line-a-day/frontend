@@ -10,6 +10,7 @@ const createLabel = labelText => <span className="navTab">{labelText}</span>;
 const todayLabel = createLabel("Today");
 const yesterdayLabel = createLabel("Yesterday");
 const calendarLabel = createLabel("All");
+const outLabel = createLabel("Logout");
 
 const panes = [
   {
@@ -34,8 +35,12 @@ const panes = [
         as={Nav}
         to={`/calendar`}
         content={calendarLabel}
+        onClick={localStorage.clear()}
       />
     )
+  },
+  {
+    menuItem: <Menu.Item key="calendar" as={Nav} to={`/`} content={outLabel} />
   }
 ];
 
